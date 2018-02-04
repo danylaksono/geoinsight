@@ -1,0 +1,122 @@
+[
+ {
+   "id_laporan": "lapr_5935663d94263",
+   "lat": 5.583,
+   "lng": 95.635,
+   "tanggal": "19/06/2016",
+   "pukul": 720,
+   "severity": 327,
+   "tipe_laporan": "satelit",
+   "id_insiden": 1,
+   "timestamp": "6/06/2017 20:49",
+   "kejadian": "Kebakaran Hutan"
+ },
+ {
+   "id_laporan": "lapr_5935663d942ca",
+   "lat": 5.573,
+   "lng": 95.637,
+   "tanggal": "19/06/2016",
+   "pukul": 720,
+   "severity": 330,
+   "tipe_laporan": "satelit",
+   "id_insiden": 1,
+   "timestamp": "6/06/2017 20:49",
+   "kejadian": "Kebakaran Hutan"
+ },
+ {
+   "id_laporan": "lapr_5935663d94308",
+   "lat": 5.547,
+   "lng": 95.757,
+   "tanggal": "24/07/2013",
+   "pukul": 703,
+   "severity": 328,
+   "tipe_laporan": "satelit",
+   "id_insiden": 1,
+   "timestamp": "6/06/2017 20:49",
+   "kejadian": "Kebakaran Hutan"
+ },
+ {
+   "id_laporan": "lapr_5935663d94342",
+   "lat": 5.535,
+   "lng": 95.648,
+   "tanggal": "31/07/2013",
+   "pukul": 709,
+   "severity": 346,
+   "tipe_laporan": "satelit",
+   "id_insiden": 1,
+   "timestamp": "6/06/2017 20:49",
+   "kejadian": "Kebakaran Hutan"
+ },
+ {
+   "id_laporan": "lapr_5935663d9437d",
+   "lat": 5.527,
+   "lng": 95.567,
+   "tanggal": "17/09/2013",
+   "pukul": 709,
+   "severity": 329,
+   "tipe_laporan": "satelit",
+   "id_insiden": 1,
+   "timestamp": "6/06/2017 20:49",
+   "kejadian": "Kebakaran Hutan"
+ },
+ {
+   "id_laporan": "lapr_5935663d943d5",
+   "lat": 5.574,
+   "lng": 95.638,
+   "tanggal": "16/07/2014",
+   "pukul": 722,
+   "severity": 336,
+   "tipe_laporan": "satelit",
+   "id_insiden": 1,
+   "timestamp": "6/06/2017 20:49",
+   "kejadian": "Kebakaran Hutan"
+ },
+ {
+   "id_laporan": "lapr_5935663d94410",
+   "lat": 5.528,
+   "lng": 95.564,
+   "tanggal": "3/08/2014",
+   "pukul": 709,
+   "severity": 335,
+   "tipe_laporan": "satelit",
+   "id_insiden": 1,
+   "timestamp": "6/06/2017 20:49",
+   "kejadian": "Kebakaran Hutan"
+ },
+ {
+   "id_laporan": "lapr_5935663d94448",
+   "lat": 5.524,
+   "lng": 95.763,
+   "tanggal": "12/07/2015",
+   "pukul": 716,
+   "severity": 351,
+   "tipe_laporan": "satelit",
+   "id_insiden": 1,
+   "timestamp": "6/06/2017 20:49",
+   "kejadian": "Kebakaran Hutan"
+ },
+ {
+   "id_laporan": "lapr_5935663d94480",
+   "lat": 5.523,
+   "lng": 95.754,
+   "tanggal": "12/07/2015",
+   "pukul": 716,
+   "severity": 342,
+   "tipe_laporan": "satelit",
+   "id_insiden": 1,
+   "timestamp": "6/06/2017 20:49",
+   "kejadian": "Kebakaran Hutan"
+ },
+ {
+   "id_laporan": "lapr_5935663d944b8",
+   "lat": 5.574,
+   "lng": 95.587,
+   "tanggal": "14/09/2015",
+   "pukul": 715,
+   "severity": 327,
+   "tipe_laporan": "satelit",
+   "id_insiden": 1,
+   "timestamp": "6/06/2017 20:49",
+   "kejadian": "Kebakaran Hutan"
+ }
+]
