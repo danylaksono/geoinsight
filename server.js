@@ -1,9 +1,11 @@
-// EXPRESS CONFIG
+// BASE CONFIG
 var express = require('express');
 var app = express();
 var port = 8081;
 var bodyParser = require('body-parser');
 app.use(bodyParser.json());
+var cors = require('cors');
+app.use(cors());
 
 // SETUP MONGODB
 var mongoose = require('mongoose');

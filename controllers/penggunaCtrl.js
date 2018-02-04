@@ -57,3 +57,21 @@ exports.updateById = function(req, res) {
         res.json(success);
     });
 };
+
+exports.login = function(req, res) {
+    Pengguna.findOne({email: req.body.email, password: req.body.password}, function(err, data) {
+        if(err) {
+            console.log(err);
+            res.send(err);
+        }
+        if(Object.keys(data).length > 0) {
+            success.data = data;
+            res.json(success);
+        } else {
+            res.json({
+                code: 403,
+                message: 'Firbidden, email or password not found in database'
+            });
+        };
+    });
+};

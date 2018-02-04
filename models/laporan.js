@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+var Schema = mongoose.Schema, 
+    ObjectId = Schema.ObjectId;
 
 var skemaLaporan = new Schema({
     type: {type: String, default: "Feature"},
@@ -8,9 +9,9 @@ var skemaLaporan = new Schema({
         coordinates: [Number]
     },
     properties: {
-        id_laporan: {type: String, required: true, unique: true},
+        _id_laporan: ObjectId,
         insiden: {type: String, required: true},
-        pukul: {type: String, required: true, unique: true},
+        pukul: Number,
         tanggal: Date,
         foto: [String],
         severity: Number,
@@ -18,8 +19,8 @@ var skemaLaporan = new Schema({
         keterangan: String,
         orientasi: Number,
         konfirmasi: [{
-	        id_konfirm: {type: String},
-            user_konfirm: {type: String}
+	        _id_konfirm: {type: String},
+            _id_user: {type: String}
     	}]
     }
 },
