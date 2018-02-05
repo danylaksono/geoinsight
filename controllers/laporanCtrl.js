@@ -20,6 +20,34 @@ var _composeLaporan = function(req) {
     return laporan;
 }
 
+var _tanggalQuery = function(que) {
+    var query = {
+        "properties.tanggal": {}
+    }
+    if(que.hasOwnProperty('min')) {
+        query["properties.tanggal"].$gte = new Date(que.min);
+    }
+    if(que.hasOwnProperty('max')) {
+        query["properties.tanggal"].$lte = new Date(que.max);
+    }
+    return query;
+}
+
+var _bufferQuery = function(que) {
+    var query = {
+        geometry: {
+            $near: {
+                $geometry: {
+                    type: "Point",
+                    coordinates: [que.lng, que.lat]
+                },
+                $maxDistance: que.dist
+            }
+        }
+    }
+    return query;
+}
+
 exports.lapor = function(req, res) {
     var laporan = _composeLaporan(req);
     laporan.save(function(err, data) {
@@ -69,4 +97,35 @@ exports.getAll = function(req, res) {
         success.data = data;
         res.json(success);
     });
-}
+};
+
+exports.getByQuery = function(req, res) {
+    const availableQuery = ["tanggal", "buffer"];
+    var reqQuery = Object.keys(req.body);
+    var query = [];
+    for(var i=reqQuery.length-1; i>=0; i--) {
+        if(!availableQuery.includes(reqQuery[i])){
+            reqQuery.splice(i, 1);
+        }
+        if(reqQuery[i]=='tanggal') {
+            query.push(_tanggalQuery(req.body.tanggal));
+        } else if(reqQuery[i]=='buffer') {
+            query.push(_bufferQuery(req.body.buffer));
+        }
+    }
+    if(query.length==1) {
+        query = query[0];
+    } else {
+        query = {
+            $and: query
+        };
+    } 
+    Laporan.find(query, function(err, data) {
+        if(err) {
+            console.log(err);
+            res.json(err);
+        }
+        success.data = data;
+        res.json(success);
+    });
+};

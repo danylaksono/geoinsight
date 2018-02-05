@@ -28,6 +28,6 @@ var skemaLaporan = new Schema({
 	timestamp: true
 });
 
-skemaLaporan.index({"geometry.coordinates": "2d"})
+skemaLaporan.index({"geometry": "2dsphere"})
 var Laporan = mongoose.model("Laporan", skemaLaporan);
 module.exports = Laporan;

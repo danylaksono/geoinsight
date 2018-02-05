@@ -26,6 +26,7 @@ module.exports = function(app, express) {
     router.get('/api/laporan', laporan.getAll);
     router.post('/api/laporan/lapor', laporan.lapor);
     router.post('/api/laporan/verify', laporan.verify);
+    router.post('/api/laporan/getByQuery', laporan.getByQuery);
 
     // ROUTE UTILITY
     router.post('/api/unggah/single', upload.single('file'), unggah.upload);
