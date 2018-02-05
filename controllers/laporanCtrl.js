@@ -1,8 +1,14 @@
-var Laporan = require('./../models/laporan.js');
+var Laporan = require('./../models/laporan');
+var io = require('./../utils/sockets').io();
 
+// DEFINE SUCCESS MESSAGE
 var success = {
     code: 200,
     message: 'success'
+};
+
+var _notify = function(id) {
+    io.sockets.emit('laporan baru', {timestamp: Date.now(), _id: id});
 };
 
 var _composeLaporan = function(req) {
@@ -17,21 +23,22 @@ var _composeLaporan = function(req) {
     laporan.properties.sumber = req.body.sumber;
     laporan.properties.keterangan = req.body.keterangan;
     laporan.properties.orientasi = req.body.orientasi;
+    laporan.properties._id_user = req.body._id_user;
     return laporan;
-}
+};
 
 var _tanggalQuery = function(que) {
     var query = {
         "properties.tanggal": {}
-    }
+    };
     if(que.hasOwnProperty('min')) {
         query["properties.tanggal"].$gte = new Date(que.min);
-    }
+    };
     if(que.hasOwnProperty('max')) {
         query["properties.tanggal"].$lte = new Date(que.max);
-    }
+    };
     return query;
-}
+};
 
 var _bufferQuery = function(que) {
     var query = {
@@ -44,9 +51,35 @@ var _bufferQuery = function(que) {
                 $maxDistance: que.dist
             }
         }
-    }
+    };
     return query;
-}
+};
+
+io.on('connection', function(client) {
+    client.on('req laporan', function(data) {
+        var que = {
+            lat: data.lat,
+            lng: data.lng,
+            dist: data.dist
+        };
+        var buffer = _bufferQuery(que);
+        que = {
+            min: data.timestamp-604800000,
+            max: data.timestamp
+        };
+        var date = _tanggalQuery(que);
+        console.log(date);
+        Laporan.find({$and:[buffer, date]}, function(err, data) {
+            if(err) {
+                console.log(err);
+                client.emit('requested', err);
+            };
+            success.data = data;
+            client.emit('requested', success);
+        });
+    });
+});
+
 
 exports.lapor = function(req, res) {
     var laporan = _composeLaporan(req);
@@ -55,6 +88,7 @@ exports.lapor = function(req, res) {
             console.log(err);
             res.json(err);
         } 
+        _notify(req.body._id_user);
         success.data = data;
         res.json(success);
     });
@@ -67,9 +101,9 @@ exports.verify = function(req, res) {
             console.log(err);
             res.json(err);
         }
-
+        
         var verifyInfo = {
-            _id_konfirm: data._id,
+            _id_laporan: data._id,
             _id_user: req.body._id_user
         }
 
@@ -82,6 +116,7 @@ exports.verify = function(req, res) {
                     console.log(err);
                     res.json(err);
                 }
+                _notify(req.body._id_user);
                 success.data = data;
                 res.json(success);
             });

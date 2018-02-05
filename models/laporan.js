@@ -10,6 +10,7 @@ var skemaLaporan = new Schema({
     },
     properties: {
         _id_laporan: ObjectId,
+        _id_user: {type: String, required: true},
         insiden: {type: String, required: true},
         pukul: Number,
         tanggal: Date,
@@ -19,7 +20,7 @@ var skemaLaporan = new Schema({
         keterangan: String,
         orientasi: Number,
         konfirmasi: [{
-	        _id_konfirm: {type: String},
+	        _id_laporan: {type: String},
             _id_user: {type: String}
     	}]
     }

@@ -6,6 +6,8 @@ var bodyParser = require('body-parser');
 app.use(bodyParser.json());
 var cors = require('cors');
 app.use(cors());
+var server = require('http').Server(app);
+var io = require('./utils/sockets').init(server);
 
 // SETUP MONGODB
 var mongoose = require('mongoose');
@@ -20,5 +22,5 @@ db.once('open', function(cb) {
 var router = require('./router.js')(app, express);
 
 // START SERVER
-app.listen(port);
+server.listen(port);
 console.log('Server running on http://localhost:'+port);
