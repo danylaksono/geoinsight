@@ -24,6 +24,7 @@ var _composeLaporan = function(req) {
     laporan.properties.keterangan = req.body.keterangan;
     laporan.properties.orientasi = req.body.orientasi;
     laporan.properties._id_user = req.body._id_user;
+    laporan.properties._timestamp = Date.now();
     return laporan;
 };
 
@@ -109,7 +110,7 @@ exports.verify = function(req, res) {
 
         Laporan.findOneAndUpdate(
             {_id: req.body._id_laporan}, 
-            {$push: {"properties.konfirmasi": verifyInfo}}, 
+            {$push: {"properties.konfirmasi": verifyInfo}, "properties._timestamp":Date.now()}, 
             {upsert: true}, 
             function(err, data) {
                 if(err) {

@@ -64,7 +64,8 @@ exports.login = function(req, res) {
             console.log(err);
             res.send(err);
         }
-        if(Object.keys(data).length > 0) {
+        
+        if(data!=null && Object.keys(data).length > 0) {
             success.data = data;
             res.json(success);
         } else {

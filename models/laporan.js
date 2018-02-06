@@ -22,7 +22,8 @@ var skemaLaporan = new Schema({
         konfirmasi: [{
 	        _id_laporan: {type: String},
             _id_user: {type: String}
-    	}]
+    	}],
+        _timestamp: Date
     }
 },
 {
